@@ -1,4 +1,5 @@
 @import "./variable.scss";
+@import "./iconfont.css";
 
 * {
   box-sizing: border-box;
@@ -102,3 +103,7 @@ input {
   -webkit-box-orient: vertical;
   word-break: break-word;
 }
+
+// 阻止默认滑动行为
+* { touch-action: pan-y; }
+

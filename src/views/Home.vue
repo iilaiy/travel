@@ -1,15 +1,20 @@
 <template>
-    <Nav></Nav>
+    <header>
+        <!-- 搜索组件 -->
+        <div class="search">
+            <Search></Search>
+        </div>
+    </header>
     <main>
         <div class="conta">
-            <van-button type="primary" />
+<!--            <van-button type="primary" />-->
         </div>
     </main>
 </template>
 
 <script setup>
+    import Search from "@/components/Search"
     import { getCurrentInstance, reactive, ref } from 'vue'
-    import Nav from "../components/Nav"
     import { useStore } from "vuex"
 
     const store = useStore();
@@ -25,8 +30,20 @@
     })
 
 
+    /**
+    * https://www.zcool.com.cn/work/ZNjMwNjM3MDA=.html
+    */
 </script>
 
 <style lang="scss" scoped>
-
+header {
+    width: 96%;
+    height: 1.8rem;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    .search {
+        width: 82%;
+    }
+}
 </style>
