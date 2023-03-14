@@ -4,6 +4,14 @@
         <div class="search">
             <Search></Search>
         </div>
+        <!-- 签到 -->
+        <div class="sign-in">
+          <img src="@/assets/img/icon/10001.png" alt="">
+        </div>
+        <!-- 消息 -->
+        <div class="message">
+          <i class="iconfont icon-xiaoxi"></i>
+        </div>
     </header>
     <main>
         <div class="conta">
@@ -36,14 +44,33 @@
 </script>
 
 <style lang="scss" scoped>
+
 header {
-    width: 96%;
-    height: 1.8rem;
+    width: 94%;
+    height: 1.5rem;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     margin: 0 auto;
+    /* 搜索框 */
     .search {
-        width: 82%;
+        width: 78%;
+    }
+    /* 签到 */
+    .sign-in {
+      height: .9rem;
+      img {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+    }
+    /* 消息 */
+    .message {
+      width: 9%;
+      i {
+        font-size: 1rem;
+      }
     }
 }
 </style>

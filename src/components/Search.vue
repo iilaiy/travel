@@ -1,15 +1,16 @@
 <template>
     <div class="search-conta">
-        <form class="search-box" @submit.prevent @click.stop.prevent="inputPaentClick">
+        <!--   TODO: 搜索框清空按钮点击事件被 .stop.prevent 阻止触发   -->
+        <form class="search-box" @click.stop.prevent="inputPaentClick()">
             <i class="iconfont icon-icon_suosou"></i>
             <input
                     class="search-input"
                     type="search" v-model.lazy.trim="searchInputVal"
                     placeholder="粘贴商品标题 搜索优惠"
                     ref="searchInput"
-                    @keyup.enter="searchSubmit"
+                    @keyup.enter="searchSubmit()"
             />
-            <input class="search-btn" @click.stop="searchSubmit" type="button" value="搜索">
+            <input class="search-btn" @click.stop="searchSubmit()" type="button" value="搜索">
         </form>
     </div>
 </template>
@@ -26,6 +27,7 @@ const searchInputVal = ref('')
 const searchInput = ref(null)
 
 console.log(searchInputVal.value)
+// TODO: fastclick插件与input聚焦冲突
 /**
  * 解决input输入框在移动端点击很多次才能聚焦
  */
@@ -41,27 +43,16 @@ const searchSubmit = () => {
 </script>
 
 <style lang="scss" scoped>
-/* 搜索框高度 */
-$input-height: .9rem;
-/* 输入框 placeholder 字体颜色 */
-input::-webkit-input-placeholder{
-    color: #808283;
-}
-/* 搜索框的删除图标样式 */
-input[type="search"]::-webkit-search-cancel-button {
-    -webkit-appearance: none;
-    height: .5rem;
-    width: .5rem;
-    background: url(https://yxs-web.oss-cn-beijing.aliyuncs.com/328e4d97f9d0d68ea04e872f68e508e3.png) no-repeat;
-    background-size: contain;
-}
+/* 全局css变量 */
+@import "@/assets/css/variable";
 
 .search-conta {
     .search-box {
         height: $input-height;
         display: flex;
         align-items: center;
-        border: 1px solid #b36c6b;
+        background-color: #ffffff;
+        border: 1px solid #fe5e15;
         border-radius: .5rem;
         padding-left: .3rem;
         .icon-icon_suosou {
@@ -75,15 +66,15 @@ input[type="search"]::-webkit-search-cancel-button {
             outline: none;
         }
         .search-input {
-            width: 75%;
+            width: 70%;
             height: $input-height;
             background-color: transparent;
             padding-left: 0.5em;
         }
         .search-btn {
-            background-color: #fc1326;
+            background-image: linear-gradient(to top, #fc244b 0%, #fc1324 100%);
             color: #ffffff;
-            width: 20%;
+            width: 25%;
             height: calc(100% - .1rem);
             margin: .05rem;
             border-radius: .5rem;
