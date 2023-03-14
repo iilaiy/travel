@@ -1,15 +1,25 @@
 //router
 import router from "../router/index.js"; //引入路由对象
-import { Toast } from 'vant'; // 提示框
+import { Toast } from 'vant';
 
 // axios
 import axios from 'axios'
 import qs from "qs";
-import { baseURL } from './common.js' // 接口域名
-axios.defaults.baseURL = baseURL;
-axios.defaults.timeout = 10000; //超时毫秒 60s
+
+if (process.env.NODE_ENV === 'development') {
+    axios.defaults.baseURL = 'http://localhost:8080'
+} else {
+    axios.defaults.baseURL = 'https://autumnfish.cn'
+}
+axios.defaults.timeout = 10000; //超时 ms
 axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest';
-axios.defaults.withCredentails = true;
+/**
+ * 设置该属性后访问会报跨域错误，需要后端支持
+ *  后端修改header信息
+ *  前端设置了该属性为true时，后端需要设置Access-Control-Allow-Origin为前端项目的源地址，不可设置为*
+ *  此外还需要设置Access-Control-Allow-Creaentials为true
+ */
+axios.defaults.withCredentails = true;  // 允许请求携带Cookie
 
 // axios请求拦截
 axios.interceptors.request.use(config => {
@@ -64,14 +74,14 @@ axios.interceptors.response.use(
             switch (error.response.status) {
                 // 404请求不存在
                 case 404:
-                    Toast.fail('网络请求不存在');
+                    // Toast.fail('网络请求不存在');
                     break;
                 case 500:
-                    Toast.fail('内部服务器错误');
+                    // Toast.fail('内部服务器错误');
                     break;
                 // 其他错误，直接抛出错误提示
                 default:
-                    Toast.fail(error.response.data.msg);
+                    // Toast.fail(error.response.data.msg);
             }
             return Promise.reject(error.response);
         }
@@ -101,7 +111,7 @@ export function get(url, params = {}) {
             params: params
         }).then(res => {
             if (res.data.code == -2000) {
-                Toast.fail(res.data.message);
+                // Toast.fail(res.data.message);
                 localStorage.clear();
                 setTimeout(() => {
                     router.replace({
@@ -113,12 +123,12 @@ export function get(url, params = {}) {
                 }, 1000);
                 return;
             } else if (res.data.code !== 200) {
-                Toast.fail(res.message);
+                // Toast.fail(res.message);
             }
             resolve(res.data);
         }).catch(error => {
             // Toast.close();
-            Toast.fail('网络请求错误');
+            // Toast.fail('网络请求错误');
             reject(error.data)
         })
     });
@@ -144,7 +154,7 @@ export function post(url, params = {}) {
         axios.post(url, params).then(res => {
             // Toast.close();
             if(res.data.code == -2000){
-                Toast.fail(res.data.message);
+                // Toast.fail(res.data.message);
                 localStorage.clear();
                 setTimeout(() => {
                     router.replace({
@@ -155,12 +165,12 @@ export function post(url, params = {}) {
                     });
                 }, 1000);
             }else if (res.data.code !== 200) {
-                Toast.fail(res.data.message);
+                // Toast.fail(res.data.message);
             }
             resolve(res.data);
         }).catch(error => {
             // Toast.close();
-            Toast.fail('网络请求错误');
+            // Toast.fail('网络请求错误');
             reject(error)
         })
     });

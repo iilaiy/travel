@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-    import { getCurrentInstance, reactive } from 'vue'
+    import { getCurrentInstance, reactive, ref } from 'vue'
     import Nav from "../components/Nav"
     import { useStore } from "vuex"
 
@@ -16,11 +16,10 @@
 
     console.log(store.state.count)
 
-
     const $axios = getCurrentInstance().appContext.config.globalProperties.$axios;
-    console.log('打印一下看看')
-    console.log(getCurrentInstance())
+
     // https://autumnfish.cn/search?keywords=关键字
+    // 写全请求地址覆盖默认配置的baseURL
     $axios.get("https://autumnfish.cn/search?keywords=关键字").then(res => {
         console.log(res)
     })
