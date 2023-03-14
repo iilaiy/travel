@@ -16,12 +16,7 @@
 </template>
 
 <script setup>
-import {
-    ref,
-    reactive,
-    onMounted,
-    nextTick
-} from "vue"
+import { ref, reactive, onMounted, nextTick } from "vue"
 // 搜索框 val
 const searchInputVal = ref('')
 const searchInput = ref(null)
