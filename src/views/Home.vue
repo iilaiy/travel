@@ -8,42 +8,48 @@
             </div>
             <!-- 搜索组件 -->
             <div class="search">
-                <Search></Search>
+                <HomeSearch></HomeSearch>
             </div>
             <!-- 消息 -->
             <div class="message">
-                <i class="iconfont icon-xiaoxi1"></i>
+                <i class="i-active iconfont icon-iconfontxiaoxidianji"></i>
             </div>
         </div>
     </header>
     <main>
         <div class="conta">
-            <!-- menu -->
-            <div class="menu">
-                <HomeMenu></HomeMenu>
-            </div>
             <!-- banner -->
             <div class="banner">
                 <HomeBanner :bannerData="bannerData"></HomeBanner>
             </div>
+            <!-- menu -->
+            <div class="menu">
+              <HomeMenu></HomeMenu>
+            </div>
             <!-- TabBar -->
             <div class="tab-bar">
-                <TabBar></TabBar>
+                <HomeTabBar></HomeTabBar>
             </div>
+            <!-- 内容 -->
+            <div class="content"></div>
         </div>
     </main>
+    <footer>
+        <TabBar></TabBar>
+    </footer>
 </template>
 
 <script setup>
-    import Search from "@/components/home/Search"
+    import HomeSearch from "@/components/home/HomeSearch"
     import HomeMenu from "@/components/home/HomeMenu"
     import HomeBanner from "@/components/home/HomeBanner"
-    import TabBar from "@/components/home/TabBar"
-    import { getCurrentInstance, reactive, ref } from 'vue'
+    import HomeTabBar from "@/components/home/HomeTabBar"
+    import TabBar from "@/components/TabBar"
+    import { getCurrentInstance, reactive, ref, onMounted, nextTick } from 'vue'
     import { useStore } from "vuex"
     const store = useStore();
-
     const $axios = getCurrentInstance().appContext.config.globalProperties.$axios;
+
     /**
      * 景点数据
      */
@@ -85,7 +91,7 @@ header {
     width: 100%;
     position: sticky;
     top: 0;
-    background: url("@/assets/img/comm/top.png") no-repeat;
+    background: url("@/assets/img/comm/bg.png") no-repeat;
     background-size: 100%;
     z-index: 999;
     .conta {
@@ -107,7 +113,7 @@ header {
         }
         i {
             margin-top: .1rem;
-            font-size: .1rem;
+            font-size: .35rem;
             margin-left: .1rem;
         }
     }
@@ -119,23 +125,38 @@ header {
     .message {
       i {
         font-size: .8rem;
+        color: #f2f2f2;
+        position: relative;
+      }
+      .i-active::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        width: .2rem;
+        height: .2rem;
+        background-color: #fe6862;
+        border-radius: 50%;
       }
     }
 }
 main {
-    height: 100vh;
-    background: url("@/assets/img/comm/bottom.png") no-repeat;
+    background: url("@/assets/img/comm/bg.png") no-repeat;
+    background-position: 0 -2rem;
     background-size: 100%;
     .conta {
         .menu {
             width: $menu-width;
             height: 41.6vw;
-            margin: 0vw auto 3.2vw auto;
-            background: 50%/contain no-repeat url(@/assets/img/comm/3-tps-1376-624.png);
+            margin: 3.2vw auto 0 auto;
         }
         .banner {
             width: 90%;
             margin: 0 auto;
+        }
+        .content {
+            width: 100%;
+            height: 50vh;
+            background-color: #f8f8f8;
         }
     }
 }

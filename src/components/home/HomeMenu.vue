@@ -1,12 +1,12 @@
 <template>
     <div class="menu-conta">
         <div class="top">
-            <div class="box" v-for="i in 5" :key="i">
+            <div class="box" v-for="(item, i) in levelOneMenuData" :key="i">
                 <a href="">
                     <i>
-                        <img src="@/assets/img/icon/index_nav_en.213dedbc.png" alt="" />
+                        <img :src="item.iconPath" alt="" />
                     </i>
-                    <span>机票</span>
+                    <span>{{ item.title }}</span>
                 </a>
             </div>
         </div>
@@ -14,12 +14,12 @@
             <div class="bot-wrapper swiper-wrapper">
                 <div
                         class="box swiper-slide"
-                        v-for="i in 10"
+                        v-for="(item, i) in levelTwoMenuData"
                         :key="i"
                 >
                     <a href="">
-                        <i class="iconfont icon-guojijipiao"></i>
-                        <span>签证</span>
+                        <i :class="[ 'iconfont', item.iconPath ]"></i>
+                        <span>{{ item.title }}</span>
                     </a>
                 </div>
             </div>
@@ -28,24 +28,81 @@
 </template>
 
 <script setup>
-    import { ref, reactive, onMounted, defineProps } from 'vue'
-    import 'swiper/swiper-bundle.css';
-    import Swiper from "swiper/swiper-bundle.min.js"
+import { ref, reactive, onMounted, defineProps } from 'vue'
+import 'swiper/swiper-bundle.css';
+import Swiper from "swiper/swiper-bundle.min.js"
 
-    onMounted(() => {
-        new Swiper ('.bot', {
-            slidesPerView: 5,
-            centeredSlidesBounds: true,
-        })
-    })
+/**
+ * 首页菜单栏数据
+ */
+const levelOneMenuData = reactive([
+    {
+        title: '机票',
+        iconPath: require('@/assets/img/icon/index_nav_en.213dedbc.png'),
+    },
+    {
+        title: '火车票',
+        iconPath: require('@/assets/img/icon/train_ticket.png'),
+    },
+    {
+        title: '酒店',
+        iconPath: require('@/assets/img/icon/index_nav_hotel.19e12527.png'),
+    },
+    {
+        title: '旅游',
+        iconPath: require('@/assets/img/icon/index_nav_free.b8cb8c43.png'),
+    },
+    {
+        title: '门票',
+        iconPath: require('@/assets/img/icon/meng_piao.png'),
+    },
+])
+const levelTwoMenuData = reactive([
+    {
+        title: '签证',
+        iconPath: 'icon-guojijipiao',
+    },
+    {
+        title: '用车',
+        iconPath: 'icon-icon_yongche',
+    },
+    {
+        title: '翻译助手',
+        iconPath: 'icon-tubiao-fanyi',
+    },
+    {
+        title: '保险',
+        iconPath: 'icon-baoxian',
+    },
+    {
+        title: '信用卡',
+        iconPath: 'icon-xinyongqia',
+    },
+    {
+        title: '民宿',
+        iconPath: 'icon-minsu1',
+    },
+    {
+        title: '活动赛事',
+        iconPath: 'icon-mingxinghuodong',
+    },
+])
+
+onMounted(() => {
+  new Swiper ('.bot', {
+    slidesPerView: 5,
+    centeredSlidesBounds: true,
+  })
+})
+
 </script>
 
 <style lang="scss" scoped>
 @import "@/assets/css/variable";
 
 .menu-conta {
-    overflow: hidden;
     .box {
+        overflow: hidden;
         display: inline-block;
         width: calc(20% - .5rem);
         margin: .25rem;
@@ -59,6 +116,7 @@
                     font-size: .8rem;
                     display: block;
                     margin: 0 auto;
+                    color: #fe6862;
                 }
                 span {
                     display: block;

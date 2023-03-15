@@ -55,7 +55,7 @@ onMounted(() => {
         padding: 0 .3rem;
         background-color: #ffffff;
         .icon-icon_suosou {
-            width: 5%;
+            width: 8%;
             font-size: .5rem;
             color: #9b9b9b;
             display: block;
@@ -65,9 +65,9 @@ onMounted(() => {
             width: 80%;
             .wen-box {
                 display: inline-block;
-                height: $input-height;
                 line-height: $input-height;
                 span {
+                    display: block;
                     color: #000000;
                 }
             }

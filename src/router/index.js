@@ -33,7 +33,6 @@ export const router = createRouter({
 router.beforeEach((to, from, next) => {
 
     if (/Android |webos| iPhone |iPod| BlackBerry | iPad/i.test(navigator.userAgent)) {
-        console.log(navigator.userAgent)
         next()
     } else {
         // TODO: 当用户不是在手机端访问时跳转到错误页面
