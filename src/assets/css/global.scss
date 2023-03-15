@@ -57,6 +57,7 @@ button,
 input {
   font-family: 'Microsoft YaHei', 'Heiti SC';
   outline: none;
+  border: none;
 }
 
 .hide,
@@ -115,6 +116,7 @@ input {
 /* 输入框 placeholder 字体颜色 */
 input::-webkit-input-placeholder{
   color: #808283;
+  font-size: .1rem;
 }
 
 /* 搜索框的删除图标样式 */

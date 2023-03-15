@@ -10,9 +10,9 @@ import '@/assets/css/global.scss'
 // 移动端适配
 import 'lib-flexible'
 // 解决移动端点击延迟300ms问题
-import FastClick from 'fastclick'
+/*import FastClick from 'fastclick'
 
-FastClick.attach(document.body)
+FastClick.attach(document.body)*/
 
 const app = createApp(App)
 
