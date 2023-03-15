@@ -34,7 +34,6 @@
             loop: true,
             autoplay: {
                 delay: 3000,
-                stopOnLastSlide: false,
                 disableOnInteraction: true,
             },
             pagination: {
@@ -62,17 +61,22 @@
                 }
             }
         }
-        .banner-pagination::v-deep {
-            bottom: .1rem;
-            left: 50%;
-            transform: translateX(-50%);
-            span {
-                width: .15rem;
-                height: .15rem;
-                border-radius: 50%;
-                margin: 0 .1rem;
-            }
-        }
     }
 }
+</style>
+
+<style>
+    .swiper-pagination-bullet {
+        width: 6px;
+        height: 6px;
+        background-color: #FFFFFF;
+        opacity: 1;
+    }
+    .swiper-pagination-bullet-active {
+        width: 14px;
+        height: 6px;
+        border-radius: 3px;
+        opacity: 1;
+        background-color: #FFFFFF;
+    }
 </style>
