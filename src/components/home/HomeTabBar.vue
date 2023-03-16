@@ -1,9 +1,16 @@
 <template>
     <div class="tab-bar-conta swiper-container">
         <ul class="tb-list swiper-wrapper">
-            <li class="li-active swiper-slide">精选</li>
-            <li class="swiper-slide">攻略</li>
-            <li class="swiper-slide">附近</li>
+            <li class="li-active swiper-slide">
+                <router-link to="/home">
+                    精选
+                </router-link>
+            </li>
+            <li class="swiper-slide">
+                <router-link to="/home/attachment">
+                    附近
+                </router-link>
+            </li>
             <li class="swiper-slide">景点</li>
             <li class="swiper-slide">美食</li>
         </ul>
@@ -32,11 +39,17 @@ onMounted(() => {
             text-align: center;
             display: inline-block;
             font-size: .35rem;
+            a {
+                color: #000000;
+            }
         }
         .li-active {
             font-size: .4rem;
             color: #65b8fb;
             position: relative;
+            a {
+                color: #65b8fb;
+            }
         }
         .li-active::after {
             position: absolute;

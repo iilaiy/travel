@@ -53,7 +53,7 @@ $center-option-wh: 1.3rem;
 
 .tab-bar {
   width: 100%;
-  height: 1.8rem;
+  height: $tab-bar-height;
   position: fixed;
   bottom: 0;
   z-index: 999;

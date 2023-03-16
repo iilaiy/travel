@@ -1,6 +1,6 @@
 <template>
     <header>
-        <div class="conta">
+        <div class="conta page-margin">
             <!-- 城市选择 -->
             <div class="city-option">
                 <span class="text-one-hidden">广州</span>
@@ -19,7 +19,7 @@
     <main>
         <div class="conta">
             <!-- banner -->
-            <div class="banner">
+            <div class="banner page-margin">
                 <HomeBanner :bannerData="bannerData"></HomeBanner>
             </div>
             <!-- menu -->
@@ -31,10 +31,15 @@
                 <HomeTabBar></HomeTabBar>
             </div>
             <!-- 内容 -->
-            <div class="content"></div>
+            <div class="content">
+                <div class="content-margin">
+                    <router-view :key="$route.path" />
+                </div>
+            </div>
         </div>
     </main>
     <footer>
+        <!-- 底部tab-bar -->
         <TabBar></TabBar>
     </footer>
 </template>
@@ -95,12 +100,10 @@ header {
     background-size: 100%;
     z-index: 999;
     .conta {
-        width: 90%;
         height: 2rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin: 0 auto;
     }
     /* 城市选择 */
     .city-option {
@@ -150,14 +153,18 @@ main {
             margin: 3.2vw auto 0 auto;
         }
         .banner {
-            width: 90%;
-            margin: 0 auto;
+
         }
         .content {
-            width: 100%;
-            height: 50vh;
             background-color: #f8f8f8;
+            .content-margin {
+                width: 94%;
+                margin: 0 auto;
+            }
         }
     }
+}
+footer {
+    height: $tab-bar-height;
 }
 </style>
