@@ -11,7 +11,7 @@
                 <HomeSearch></HomeSearch>
             </div>
             <!-- 消息 -->
-            <div class="message">
+            <div class="message" @click="toMessage()">
                 <i class="i-active iconfont icon-iconfontxiaoxidianji"></i>
             </div>
         </div>
@@ -31,6 +31,7 @@
                 <HomeTabBar></HomeTabBar>
             </div>
             <!-- 内容 -->
+            <!-- TODO: 改成点击不同tab-bar切换相应组件 -->
             <div class="content">
                 <div class="content-margin">
                     <router-view :key="$route.path" />
@@ -52,9 +53,11 @@
     import TabBar from "@/components/TabBar"
     import { getCurrentInstance, reactive, ref, onMounted, nextTick } from 'vue'
     import { useStore } from "vuex"
+    import { useRoute, useRouter } from 'vue-router'
     const store = useStore();
     const $axios = getCurrentInstance().appContext.config.globalProperties.$axios;
-
+    const $route = useRoute()
+    const $router = useRouter()
     /**
      * 景点数据
      */
@@ -64,6 +67,11 @@
         scenicSpot = res.result.value
         console.log(scenicSpot)
     })*/
+
+    /**
+     * 开发阶段(已登录状态)
+     */
+    localStorage.setItem('token','fdfjkdfjksdfdkf');
 
     const bannerData = reactive([
         {
@@ -79,8 +87,12 @@
             imgUrl: require('@/assets/img/banner/b65569e1a8f42fef.jpg')
         },
     ])
-
-
+    /**
+     * 跳转消息页面登录验证
+     */
+    const toMessage = () => {
+        $router.push('/message')
+    }
 
     /**
      * https://www.zcool.com.cn/work/ZNDQ4MTY2MjA=.html

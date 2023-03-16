@@ -67,20 +67,24 @@ const levelTwoMenuData = reactive([
         iconPath: 'icon-icon_yongche',
     },
     {
-        title: '翻译助手',
-        iconPath: 'icon-tubiao-fanyi',
+        title: '民宿',
+        iconPath: 'icon-building',
     },
     {
-        title: '保险',
-        iconPath: 'icon-baoxian',
+        title: '天气',
+        iconPath: 'icon-tianqi',
     },
     {
         title: '信用卡',
         iconPath: 'icon-xinyongqia',
     },
     {
-        title: '民宿',
-        iconPath: 'icon-minsu1',
+        title: '保险',
+        iconPath: 'icon-a-wodebaoxian3x',
+    },
+    {
+        title: '翻译助手',
+        iconPath: 'icon-weibiaoti556',
     },
     {
         title: '活动赛事',

@@ -136,7 +136,12 @@
                 <!-- 机票 -->
                 <a href="">
                     <div class="air-ticket box">
+                        <div class="air-title">
+                            出行交通
+                        </div>
+                        <div class="air-bot">
 
+                        </div>
                     </div>
                 </a>
                 <a href="">
@@ -188,9 +193,7 @@
 </template>
 
 <script setup>
-    /**
-     * TODO: 酒店模块标签文字 解决chrome浏览器文字小于12px的问题
-     */
+// TODO: 酒店模块标签文字 解决chrome浏览器文字小于12px的问题
 </script>
 
 <style lang="scss" scoped>
@@ -294,7 +297,7 @@
                     display: flex;
                     div {
                         max-width: 1.8rem;
-                        padding: 0 .12rem;
+                        padding: .05rem .15rem;
                         line-height: .4rem;
                         background-color: #fd7978;
                         margin-right: .15rem;
@@ -317,9 +320,18 @@
             }
         }
         .air-ticket {
-            background: url("@/assets/img/comm/jp.jpg");
+            background: url("@/assets/img/comm/9d003a8efd5e4695f.png") no-repeat;
             background-size: cover;
-            height: 60vw;
+            height: 58vw;
+            padding: 8%;
+            .air-title {
+              color: white;
+              font-size: .4rem;
+              font-weight: 600;
+              letter-spacing: .05rem;
+            }
+            .air-bot {
+            }
         }
         .box {
             border-radius: .3rem;

@@ -3,11 +3,14 @@
         <div class="bottomNav">
             <div
                 class="navBox"
-                v-for="(item, i) in tabBarNavList"
-                :key="i"
-                :class="[ i === active ? 'navBox-active' : '' ]"
+                v-for="item in tabBarNavList"
+                :key="item.id"
+                :class="[ item.id === active ? 'navBox-active' : '' ]"
             >
-                <i :class="[ 'iconfont', item.iconPath ]"></i>
+                <i>
+                  <img v-show="active !== item.id" :src="item.iconPath" alt="">
+                  <img v-show="active === item.id" :src="item.iconSelectPath" alt="">
+                </i>
                 <span>{{ item.title }}</span>
             </div>
         </div>
@@ -21,35 +24,51 @@ import { ref, reactive } from 'vue'
  */
 const tabBarNavList = reactive([
     {
+        id: 1,
         title: '首页',
-        iconPath: 'icon-Home',
+        iconPath: require('@/assets/img/icon/img1.4ac4c20c.png'),
+        iconSelectPath: require('@/assets/img/icon/img1.4ac4c20c_active.png'),
+        hrefs: '/home',
     },
     {
+        id: 2,
         title: '攻略',
-        iconPath: 'icon-biaoqiankuozhan_gonglve-329',
+        iconPath: require('@/assets/img/icon/gonglue.png'),
+        iconSelectPath: require('@/assets/img/icon/gonglue-active.png'),
+        hrefs: '/',
     },
     {
+        id: 3,
         title: '发布',
-        iconPath: 'icon-fabu',
+        iconPath: require('@/assets/img/icon/fabu.png'),
+        iconSelectPath: require('@/assets/img/icon/fabu.png'),
+        hrefs: '/',
     },
     {
-        title: '行程',
-        iconPath: 'icon-hangcheng',
+        id: 4,
+        title: '订单',
+        iconPath: require('@/assets/img/icon/img2.12aa5813.png'),
+        iconSelectPath: require('@/assets/img/icon/img22.98e00f94.png'),
+        hrefs: '/',
     },
     {
+        id: 5,
         title: '我的',
-        iconPath: 'icon-wode',
+        iconPath: require('@/assets/img/icon/img3.8fd2bd15.png'),
+        iconSelectPath: require('@/assets/img/icon/img33.3d66679c.png'),
+        hrefs: '/',
     },
 ])
-const active = ref(0)
+const active = ref(1)
+// TODO: 点击切换相应页面并且改变高亮
 </script>
 
 <style lang="scss" scoped>
 @import "@/assets/css/variable";
 /* 被选中 */
-$active-color: #65b8fb;
+$active-color: #ffc900;
 /* 中间选项的宽高 */
-$center-option-wh: 1.3rem;
+$center-option-wh: 1.2rem;
 
 .tab-bar {
   width: 100%;
@@ -66,10 +85,6 @@ $center-option-wh: 1.3rem;
             display: inline-block;
             text-align: center;
             color: #696a6c;
-            i {
-              display: block;
-              font-size: .7rem;
-            }
             span {
               display: block;
               margin-top: .1rem;
@@ -80,17 +95,19 @@ $center-option-wh: 1.3rem;
         }
         .navBox:nth-child(3) {
             i {
-              height: $center-option-wh;
-              width: $center-option-wh;
               display: flex;
               align-items: center;
               justify-content: center;
-              font-size: .6rem;
-              color: $background-primary;
+              height: $center-option-wh;
+              width: $center-option-wh;
               border: .1rem solid $background-primary;
               margin: -$center-option-wh auto 0 auto;
               background-color: $active-color;
               border-radius: 50%;
+              img {
+                width: 80%;
+                display: block;
+              }
             }
         }
     }
