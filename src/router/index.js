@@ -11,7 +11,6 @@ const routes = [
         component: () => import('@/views/Home/Home'),
         meta: {
             keepAlive: true, //需要被缓存
-            requireAuth: false,  // 需要验证登录
         },
         children: [
             {
@@ -29,6 +28,11 @@ const routes = [
                 },
             },
         ]
+    },
+    {
+        path: '/city',
+        name: 'City',
+        component: () => import('@/views/City/City')
     },
     {
         path: '/search',
@@ -77,6 +81,7 @@ router.beforeEach((to, from, next) => {
             if (Boolean(localStorage.getItem("token"))) { // 通过浏览器本地缓存判断当前的token是否存在
                 next();
             } else {
+                console.log(to.fullPath)
                 // TODO: 先弹出一个提示框，待用户选择是否需要跳转登录页进行登录，否则返回原本的页面
                 next({
                     path: '/login',
@@ -84,7 +89,20 @@ router.beforeEach((to, from, next) => {
                 })
             }
         } else {
-            next();
+            if (Boolean(localStorage.getItem("token"))) { // 判断是否登录
+                if (to.path != "/login") { //判断是否要跳到登录界面
+                    next();
+                } else {
+                    /**
+                     * 防刷新，如果登录，修改路由跳转到登录页面，修改路由为登录后的首页
+                     */
+                    next({
+                        path: '/home'
+                    })
+                }
+            } else {
+                next();
+            }
         }
     } else {
         next({

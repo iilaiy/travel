@@ -2,7 +2,7 @@
     <header>
         <div class="conta page-margin">
             <!-- 城市选择 -->
-            <div class="city-option">
+            <div class="city-option" @click="$router.push('/city')">
                 <span class="text-one-hidden">广州</span>
                 <i class="iconfont icon-arrow-down"></i>
             </div>
