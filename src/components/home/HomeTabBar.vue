@@ -13,6 +13,7 @@
             </li>
             <li class="swiper-slide">景点</li>
             <li class="swiper-slide">美食</li>
+            <li class="swiper-slide">美食</li>
         </ul>
     </div>
 </template>
@@ -24,7 +25,7 @@ import Swiper from "swiper/swiper-bundle.min.js"
 
 onMounted(() => {
     new Swiper ('.tab-bar-conta', {
-        slidesPerView: 4,
+        slidesPerView: 5,
     })
 })
 </script>
@@ -34,7 +35,6 @@ onMounted(() => {
     width: 100%;
     .tb-list {
         li {
-            width: calc(100% / 4);
             line-height: 2rem;
             text-align: center;
             display: inline-block;

@@ -110,6 +110,8 @@ router.beforeEach((to, from, next) => {
             query: { redirect: to.fullPath } // 将跳转的路由path作为参数，登录成功后跳转到该路由
         })
     }
+
+    window.scrollTo(0, 0)
 })
 
 export default router

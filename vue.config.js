@@ -12,5 +12,8 @@ module.exports = defineConfig({
         resolvers: [VantResolver()],
       }),
     ],
+    externals: {
+      'BMap': 'BMap' // 百度地图配置
+    }
   },
 })

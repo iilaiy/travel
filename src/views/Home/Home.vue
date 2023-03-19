@@ -3,7 +3,7 @@
         <div class="conta page-margin">
             <!-- 城市选择 -->
             <div class="city-option" @click="$router.push('/city')">
-                <span class="text-one-hidden">广州</span>
+                <span class="text-one-hidden">{{ $store.state.city }}</span>
                 <i class="iconfont icon-arrow-down"></i>
             </div>
             <!-- 搜索组件 -->
@@ -58,6 +58,8 @@
     const $axios = getCurrentInstance().appContext.config.globalProperties.$axios;
     const $route = useRoute()
     const $router = useRouter()
+
+
     /**
      * 景点数据
      */
@@ -67,11 +69,6 @@
         scenicSpot = res.result.value
         console.log(scenicSpot)
     })*/
-
-    /**
-     * 开发阶段(已登录状态)
-     */
-    localStorage.setItem('token','fdfjkdfjksdfdkf');
 
     const bannerData = reactive([
         {
@@ -119,7 +116,6 @@ header {
     }
     /* 城市选择 */
     .city-option {
-        font-weight: 600;
         display: flex;
         align-items: center;
         span {

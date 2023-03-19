@@ -193,7 +193,7 @@
 </template>
 
 <script setup>
-// TODO: 酒店模块标签文字 解决chrome浏览器文字小于12px的问题
+
 </script>
 
 <style lang="scss" scoped>
@@ -214,7 +214,6 @@
             padding: 5%;
         }
         .imgBox {
-            max-height: 38vw;
             border-radius: .2rem;
             margin: 0 auto;
             img {
@@ -295,15 +294,25 @@
                 .label {
                     margin: .2rem 0;
                     display: flex;
+                    flex-wrap: wrap;
                     div {
                         max-width: 1.8rem;
                         padding: .05rem .15rem;
                         line-height: .4rem;
                         background-color: #fd7978;
                         margin-right: .15rem;
+                        margin-top: .2rem;
                         border-radius: .1rem;
                         span {
                             color: white;
+                            font-size: .3rem;
+                            /* 酒店模块标签文字 解决chrome浏览器文字小于12px的问题*/
+                            /* 方案一: 有兼容性问题 */
+                            zoom: .8;
+                            /* 方案二 */
+                            //-webkit-transform: scale(0.8);
+                            /* 方案三: 已废弃 */
+                            //-webkit-text-size-adjust: none;
                         }
                     }
                 }
@@ -322,6 +331,7 @@
         .air-ticket {
             background: url("@/assets/img/comm/9d003a8efd5e4695f.png") no-repeat;
             background-size: cover;
+            /* 不限制高度 */
             height: 58vw;
             padding: 8%;
             .air-title {
