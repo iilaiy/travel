@@ -12,23 +12,7 @@ const routes = [
         component: () => import('@/views/Home/Home'),
         meta: {
             keepAlive: true, //需要被缓存
-        },
-        children: [
-            {
-                path: '/home',
-                component: () => import('@/views/Home/HomeSelect'),
-                meta: {
-                    keepAlive: true
-                },
-            },
-            {
-                path: 'attachment',
-                component: () => import('@/views/Home/HomeAttachment'),
-                meta: {
-                    keepAlive: true
-                },
-            },
-        ]
+        }
     },
     {
         /* 选择城市 */

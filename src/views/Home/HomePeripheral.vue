@@ -1,13 +1,11 @@
 <template>
     <div class="attachment">
-        附近
+        周边
     </div>
 </template>
 
-<script>
-    export default {
-        name: "HomeAttachment"
-    }
+<script setup>
+
 </script>
 
 <style lang="scss" scoped>

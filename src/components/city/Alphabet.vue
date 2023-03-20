@@ -38,7 +38,7 @@ export default {
     letters() {
       const letters = []
       for (let i in this.cities) {
-        letters.push(this.cities[i].initial)
+        letters.push(i)
       }
       return letters
     }

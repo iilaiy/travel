@@ -3,9 +3,11 @@
  */
 const mutations = {
     changeCity(state, city) {
-        state.city = city
+        state.city = {...city}
         try {
-            localStorage.city = city
+            localStorage.city = JSON.stringify({
+                ...city
+            })
         } catch (e) {}
     },
 }

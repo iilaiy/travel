@@ -3,7 +3,7 @@
         <div class="conta page-margin">
             <!-- 城市选择 -->
             <div class="city-option" @click="$router.push('/city')">
-                <span class="text-one-hidden">{{ city }}</span>
+                <span class="text-one-hidden">{{ city.name }}</span>
                 <i class="iconfont icon-arrow-down"></i>
             </div>
             <!-- 搜索组件 -->
@@ -28,13 +28,14 @@
             </div>
             <!-- TabBar -->
             <div class="tab-bar">
-                <HomeTabBar></HomeTabBar>
+                <HomeTabBar :homeTabBar="homeTabBar" :currentCom="currentCom" @switchCom="switchCom"></HomeTabBar>
             </div>
             <!-- 内容 -->
-            <!-- TODO: 改成点击不同tab-bar切换相应组件 -->
+            <!-- 点击不同tab-bar切换相应组件 -->
             <div class="content">
                 <div class="content-margin">
-                    <router-view :key="$route.path" />
+<!--                    条件渲染组件-->
+                    <component :is="currentCom.comName"></component>
                 </div>
             </div>
         </div>
@@ -46,12 +47,17 @@
 </template>
 
 <script setup>
+    import { getCurrentInstance, reactive, ref, onMounted, nextTick, computed, markRaw } from 'vue'
     import HomeSearch from "@/components/home/HomeSearch"
     import HomeMenu from "@/components/home/HomeMenu"
     import HomeBanner from "@/components/home/HomeBanner"
     import HomeTabBar from "@/components/home/HomeTabBar"
     import TabBar from "@/components/TabBar"
-    import {getCurrentInstance, reactive, ref, onMounted, nextTick, computed} from 'vue'
+    import HomeSelect from "@/views/Home/HomeSelect"
+    import HomePeripheral from "@/views/Home/HomePeripheral"
+    import HomeScenicSpot from "@/views/Home/HomeScenicSpot"
+    import HomeGourmetFood from "@/views/Home/HomeGourmetFood"
+    import HomeTheme from "@/views/Home/HomeTheme"
     import { useStore } from "vuex"
     import { useRoute, useRouter } from 'vue-router'
     const store = useStore();
@@ -95,9 +101,55 @@
     }
 
     /**
+     * 组件数据
+     */
+    const homeTabBar = reactive([
+        {
+            id: 1,
+            title: '精选',
+            comName: markRaw(HomeSelect)
+        },
+        {
+            id: 2,
+            title: '周边',
+            comName: markRaw(HomePeripheral)
+        },
+        {
+            id: 3,
+            title: '景点',
+            comName: markRaw(HomeScenicSpot)
+        },
+        {
+            id: 4,
+            title: '美食',
+            comName: markRaw(HomeGourmetFood)
+        },
+        {
+            id: 5,
+            title: '主题',
+            comName: markRaw(HomeTheme)
+        },
+    ])
+    /* 默认显示精选组件 */
+    let currentCom = reactive({
+        id: homeTabBar[0].id,
+        comName: homeTabBar[0].comName
+    })
+    /* 接收子组件HomeTabBar传递过来的值（当前点击的tab-bar） */
+    const switchCom = val => {
+        // console.log(val)
+        currentCom.id = val.id
+        currentCom.comName = val.comName
+    }
+
+    /**
      * https://www.zcool.com.cn/work/ZNDQ4MTY2MjA=.html
      *
      * https://market.m.taobao.com/app/trip/rx-home/pages/home?_projVer=2.0.8
+     *
+     * 接口：
+     *  https://dashboard.juhe.cn/data/index/my
+     *  https://justdoit.blog.csdn.net/article/details/89290195?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-89290195-blog-104498668.pc_relevant_multi_platform_whitelistv3&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-89290195-blog-104498668.pc_relevant_multi_platform_whitelistv3&utm_relevant_index=1
      */
 </script>
 

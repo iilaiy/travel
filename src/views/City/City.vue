@@ -8,7 +8,7 @@
         </div>
       </header>
       <List :cityData="cityData.data" :letter="letter"></List>
-      <Alphabet :cities="cityData.data.city" @jumpCity="jumpCity"></Alphabet>
+      <Alphabet :cities="cityData.data.cities" @jumpCity="jumpCity"></Alphabet>
     </div>
 </template>
 

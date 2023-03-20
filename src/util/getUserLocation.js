@@ -1,4 +1,8 @@
 // 获取当前城市
+
+/**
+ * 该方法获取地区有偏差
+ */
 const getCurrentCityName = function() {
     return new Promise((resolve, reject) => {
         let myCity = new BMap.LocalCity();

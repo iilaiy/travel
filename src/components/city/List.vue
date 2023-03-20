@@ -7,13 +7,12 @@
             <!--     定位当前位置       -->
             <div
                 :class="[ 'button', ( locationMsg === $store.state.city) ? 'position-bottom' : '' ]"
-                @click="changeCity({name: locationMsg})"
+                @click="changeCity({name: locationMsg.value}, true )"
             >
               <!-- 武汉 -->
               <i class="iconfont icon-weizhi"></i>
-<!--              {{ $store.state.positionCity }}-->
 <!--              定位城市-->
-              {{ locationMsg }}
+              {{ locationMsg.value }}
             </div>
           </div>
         </div>
@@ -24,7 +23,7 @@
         <div class="button-list">
           <div class="button-wrapper hot-wrapper">
             <div
-                :class="[ 'button-common', 'button', (item.name === $store.state.city) ? 'position-bottom' : '' ]"
+                :class="[ 'button-common', 'button', (item.name === $store.state.city.name) ? 'position-bottom' : '' ]"
                 v-for="(item, index) in cityList.hotCities"
                 :key="index"
                 @click="changeCity(item)"
@@ -35,17 +34,17 @@
         </div>
       </div>
       <!--   字母排序   -->
-      <div class="area" v-for="(item, index) in cityList.city" :key="index">
-        <div class="title border-topbottom t-bgc" :id="item.initial">{{ item.initial }}</div>
+      <div class="area" v-for="(item, key, index) in cityList.city" :key="index">
+        <div class="title border-topbottom t-bgc" :id="key">{{ key }}</div>
         <div class="button-list">
           <div class="button-wrapper">
             <div
                 class="button-common list-bottom"
-                v-for="(val, i) in item.list"
-                :key="i"
+                v-for="val in item"
+                :key="val.id"
                 @click="changeCity(val)"
             >
-              {{ val.name }}
+                {{ val.name }}
             </div>
           </div>
         </div>
@@ -61,18 +60,34 @@ import { useRoute, useRouter } from 'vue-router'
 const $route = useRoute()
 const $router = useRouter()
 
-import getCurrentCityName from "@/util/getUserLocation";
+import getCurrentCityName from "@/util/map";
 
 /**
  * 定位城市
  */
-let locationMsg = ref('定位中...')
+let locationMsg = ref({
+  value: '定位中...',
+  flag: false
+})
+
 const getCurrentCity = () => {
-  getCurrentCityName().then(city => {
-    // console.log(city)
-    let result = city.addressComponents.city;
-    locationMsg.value = result.slice(0, result.length - 1)
-    // store.commit('changeCity', result)
+  getCurrentCityName.init().then(BMap => {
+    const goolocation = new BMap.Geolocation()
+    goolocation.getCurrentPosition(
+            function getinfo(position) {
+              // console.log(position)
+              let city = position.address.city
+              let province = position.address.province
+              locationMsg.value.value = city
+              locationMsg.value.flag = true
+            },
+            function (e) {
+              locationMsg.value.value = '定位失败'
+              locationMsg.value.flag = false
+            },
+            {provider: "baidu"}
+    )
+
   })
 }
 
@@ -99,16 +114,39 @@ const cityList = reactive({
 watch(
     () => props.cityData,
     val => {
-      cityList.city = val.city
       cityList.hotCities = val.hotCities
+      cityList.city = val.cities
     }
 )
 
 /**
  * 修改城市
  */
-const changeCity = item => {
-  store.commit('changeCity', item.name)
+const changeCity = (item, flag) => {
+  let letters = item
+  /* 当用户点击的是定位城市时，定位成功前不允许执行选择定位城市并跳转 */
+  if (flag) {
+    if (!locationMsg.value.flag) {
+      return
+    }
+    /* 获取定位城市的简称 */
+    item.name = item.name.replace(/(.+)[藏|壮|傣]族.{1,2}族自治州/g, "$1");
+    item.name = item.name.replace(/(.+)((.{2}族.{1,2}族)|蒙古)自治州/g, "$1");
+    item.name = item.name.replace(/(.+)[回|藏|藏|彝|傣|白]族自治州/g, "$1");
+    item.name = item.name.replace(/(.+)(.{2}族)自治州/g, "$1");
+    item.name = item.name.replace(/(.{2,10})市/g, "$1");
+    // console.log(item.name)
+    /* 匹配当前定位城市的数据 */
+    for (let i in  cityList.city) {
+      cityList.city[i].forEach(val => {
+        if (val.name === item.name) {
+          letters = val
+          return
+        }
+      })
+    }
+  }
+  store.commit('changeCity', letters)
   $router.back()
 }
 

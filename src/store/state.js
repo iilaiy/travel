@@ -5,14 +5,17 @@
 /**
  * 解决某浏览器对于local的本地存储会报错的问题
  */
-let defaultCity = '深圳'
+let defaultCity = {
+    id: '37',
+    name: '深圳',
+    spell: 'shenzhen',
+}
 
 try {
     if (localStorage.city) {
-        defaultCity = localStorage.city
+        defaultCity = JSON.parse(localStorage.city)
     }
 } catch (e) {}
-
 
 
 const state = {
