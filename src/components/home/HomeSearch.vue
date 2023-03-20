@@ -1,25 +1,21 @@
 <template>
     <div class="search-conta">
-        <!-- TODO: 当用户点击输入框时带上当前的输入框内容跳转到搜索页面 -->
-        <router-link to="/search">
-            <div class="search-box">
+            <div class="search-box" @click="toSearch">
                 <i class="iconfont icon-icon_suosou"></i>
-                <div class="swiper-container b-wen">
+                <div class="swiper-container b-wen _swiper">
                     <div class="swiper-wrapper wen-box">
-                        <div class="swiper-slide">
+                        <div
+                            class="swiper-slide"
+                            v-for="item in hotSearch"
+                            :key="item.id"
+                        >
                             <span>
-                                广州到三亚飞机票
-                            </span>
-                        </div>
-                        <div class="swiper-slide">
-                            <span>
-                                深圳
+                                {{ item.content }}
                             </span>
                         </div>
                     </div>
                 </div>
             </div>
-        </router-link>
     </div>
 </template>
 
@@ -27,20 +23,43 @@
 import { ref, reactive, onMounted, defineProps } from 'vue'
 import 'swiper/swiper-bundle.css';
 import Swiper from "swiper/swiper-bundle.min.js"
+import {useRouter} from "vue-router/dist/vue-router";
 
-onMounted(() => {
-    new Swiper ('.b-wen', {
+const $router = useRouter()
+
+const props = defineProps({
+  hotSearch: Object
+})
+
+const activeIndex = ref(0)
+
+  onMounted(() => {
+    var mySwiper = new Swiper ('.b-wen', {
         loop: true,
         autoplay: {
             delay: 5000,
         },
         direction: 'vertical',
         on: {
-
+          slideChange () {
+            /* 获取activeIndex */
+            activeIndex.value = this.activeIndex
+            // console.log(activeIndex.value)
+          }
         }
     })
 })
-
+/**
+ * 当用户点击输入框时带上当前的输入框内容跳转到搜索页面
+ */
+const toSearch = () => {
+  $router.push({
+    name:'Search',
+    query:{
+      ...props.hotSearch[activeIndex.value - 1]
+    }
+  })
+}
 </script>
 
 <style lang="scss" scoped>

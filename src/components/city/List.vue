@@ -6,7 +6,7 @@
           <div class="button-wrapper">
             <!--     定位当前位置       -->
             <div
-                :class="[ 'button', ( locationMsg === $store.state.city) ? 'position-bottom' : '' ]"
+                :class="[ 'button', ( $store.state.positionCity === $store.state.city.name) ? 'position-bottom' : '' ]"
                 @click="changeCity({name: locationMsg.value}, true )"
             >
               <!-- 武汉 -->
@@ -71,20 +71,32 @@ let locationMsg = ref({
 })
 
 const getCurrentCity = () => {
+  locationMsg.value.value = '定位中...'
+  locationMsg.value.flag = false
   getCurrentCityName.init().then(BMap => {
     const goolocation = new BMap.Geolocation()
     goolocation.getCurrentPosition(
             function getinfo(position) {
               // console.log(position)
-              let city = position.address.city
-              let province = position.address.province
-              locationMsg.value.value = city
-              locationMsg.value.flag = true
+              try {
+                let city = position.address.city
+                let province = position.address.province
+                /* 城市为空时，抛出错误 */
+                if (!city) {
+                  throw '定位失败'
+                }
+                locationMsg.value.value = city
+                locationMsg.value.flag = true
+              }
+              catch (e) {
+                // console.log(e)
+                locationMsg.value.value = '定位失败'
+                locationMsg.value.flag = false
+              }
+              /* 关闭节流 */
+              flag = false
             },
-            function (e) {
-              locationMsg.value.value = '定位失败'
-              locationMsg.value.flag = false
-            },
+            {},
             {provider: "baidu"}
     )
 
@@ -122,11 +134,18 @@ watch(
 /**
  * 修改城市
  */
-const changeCity = (item, flag) => {
+let flag = false  // 节流
+const changeCity = (item, positionCityBol) => {
   let letters = item
   /* 当用户点击的是定位城市时，定位成功前不允许执行选择定位城市并跳转 */
-  if (flag) {
+  if (positionCityBol) {
+    /* 定位失败时 */
     if (!locationMsg.value.flag) {
+      if (!flag) {
+        /* 开启节流 */
+        flag = true
+        getCurrentCity()
+      }
       return
     }
     /* 获取定位城市的简称 */
@@ -136,6 +155,8 @@ const changeCity = (item, flag) => {
     item.name = item.name.replace(/(.+)(.{2}族)自治州/g, "$1");
     item.name = item.name.replace(/(.{2,10})市/g, "$1");
     // console.log(item.name)
+    // 定位当前城市存入store
+    store.commit('changePositionCity', item.name)
     /* 匹配当前定位城市的数据 */
     for (let i in  cityList.city) {
       cityList.city[i].forEach(val => {
@@ -198,6 +219,7 @@ $width-list: 92%;
         border-radius: .05rem;
         text-align: center;
         line-height: .9rem;
+        font-size: .38rem;
         border: 1px solid #dbdbdb;
         i {
           font-size: .35rem;
@@ -208,6 +230,7 @@ $width-list: 92%;
         border-color: #f9a825;
       }
       .list-bottom {
+        font-size: .38rem;
         width: 100%;
         line-height: 1.2rem;
         border-bottom: 1px solid #dbdbdb;

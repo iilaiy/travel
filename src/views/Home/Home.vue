@@ -8,7 +8,7 @@
             </div>
             <!-- 搜索组件 -->
             <div class="search">
-                <HomeSearch></HomeSearch>
+                <HomeSearch :hotSearch="hotSearch"></HomeSearch>
             </div>
             <!-- 消息 -->
             <div class="message" @click="toMessage()">
@@ -101,7 +101,7 @@
     }
 
     /**
-     * 组件数据
+     * tab-bar组件数据
      */
     const homeTabBar = reactive([
         {
@@ -143,6 +143,19 @@
     }
 
     /**
+     * 热门搜索
+     */
+    const hotSearch = reactive([
+      {
+        id: 1,
+        content: '广州到三亚飞机票'
+      },
+      {
+        id: 2,
+        content: '沙面'
+      }
+    ])
+    /**
      * https://www.zcool.com.cn/work/ZNDQ4MTY2MjA=.html
      *
      * https://market.m.taobao.com/app/trip/rx-home/pages/home?_projVer=2.0.8
@@ -164,7 +177,7 @@ header {
     background-size: 100%;
     z-index: 999;
     .conta {
-        height: 2rem;
+        height: $nav-height;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -207,7 +220,7 @@ header {
 }
 main {
     background: url("@/assets/img/comm/bg.png") no-repeat;
-    background-position: 0 -2rem;
+    background-position: 0 -1.6rem;
     background-size: 100%;
     .conta {
         .menu {

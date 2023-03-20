@@ -106,16 +106,20 @@ onMounted(() => {
 
 .menu-conta {
     .box {
-        overflow: hidden;
         display: inline-block;
-        width: calc(20% - .5rem);
-        margin: .25rem;
+        width: calc(20%);
+        margin: .2rem 0;
+        font-size: .38rem;
+        img {
+          width: 70%;
+          margin: 0 auto;
+          display: block;
+        }
     }
     .bot {
         width: $menu-width;
         .bot-wrapper {
             .box {
-                width: calc(100% / 5 - .5rem) !important;
                 i {
                     font-size: .8rem;
                     display: block;
@@ -125,6 +129,7 @@ onMounted(() => {
                 span {
                     display: block;
                     margin-top: .1rem;
+                    font-size: .35rem;
                 }
             }
         }
@@ -134,13 +139,10 @@ onMounted(() => {
         display: block;
         text-align: center;
     }
-    img {
-        width: 100%;
-        height: 100%;
-        display: block;
-    }
     span {
+        display: block;
         color: #4d4f52;
+        margin-top: .1rem;
     }
 }
 </style>

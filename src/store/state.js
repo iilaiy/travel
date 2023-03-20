@@ -20,5 +20,6 @@ try {
 
 const state = {
     city: defaultCity,
+    positionCity: ''
 }
 export { state }

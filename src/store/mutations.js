@@ -10,5 +10,8 @@ const mutations = {
             })
         } catch (e) {}
     },
+    changePositionCity(state, city) {
+        state.positionCity = city
+    }
 }
 export { mutations }

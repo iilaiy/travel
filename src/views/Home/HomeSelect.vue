@@ -229,6 +229,7 @@
             justify-content: space-between;
             .position {
                 color: #b2acaa;
+                font-size: .35rem;
                 i {
                     margin-right: .1rem;
                 }
@@ -279,6 +280,7 @@
                 .distance {
                     display: flex;
                     color: #b6b6b8;
+                    font-size: .35rem;
                     i {
                     }
                     span {
