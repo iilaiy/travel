@@ -6,6 +6,7 @@ const routes = [
         redirect: '/home'
     },
     {
+        /* 首页 */
         path: '/home',
         name: 'Home',
         component: () => import('@/views/Home/Home'),
@@ -30,16 +31,19 @@ const routes = [
         ]
     },
     {
+        /* 选择城市 */
         path: '/city',
         name: 'City',
         component: () => import('@/views/City/City')
     },
     {
+        /* 搜素页 */
         path: '/search',
         name: 'Search',
         component: () => import('@/views/Search/Search')
     },
     {
+        /* 消息 */
         path: '/message',
         name: 'Message',
         component: () => import('@/views/Message/Message'),
@@ -49,9 +53,34 @@ const routes = [
         },
     },
     {
+        /* 登录 */
         path: '/login',
         name: 'Login',
         component: () => import('@/views/Login/Login')
+    },
+    {
+        /* 攻略 */
+        path: '/guideline',
+        name: 'Guideline',
+        component: () => import('@/views/Guideline/Guideline')
+    },
+    {
+        /* 发布 */
+        path: '/release',
+        name: 'Release',
+        component: () => import('@/views/Release/Release')
+    },
+    {
+        /* 订单 */
+        path: '/order',
+        name: 'Order',
+        component: () => import('@/views/Order/Order')
+    },
+    {
+        /* 我的 */
+        path: '/mine',
+        name: 'Mine',
+        component: () => import('@/views/Mine/Mine')
     }
 ]
 
@@ -110,7 +139,7 @@ router.beforeEach((to, from, next) => {
             query: { redirect: to.fullPath } // 将跳转的路由path作为参数，登录成功后跳转到该路由
         })
     }
-
+    /* 每次跳转页面返回到顶部 */
     window.scrollTo(0, 0)
 })
 

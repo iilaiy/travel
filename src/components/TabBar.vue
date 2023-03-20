@@ -5,11 +5,12 @@
                 class="navBox"
                 v-for="item in tabBarNavList"
                 :key="item.id"
-                :class="[ item.id === active ? 'navBox-active' : '' ]"
+                :class="[ item.id === selectedIndex ? 'navBox-active' : '' ]"
+                @click="switchTab(item)"
             >
                 <i>
-                  <img v-show="active !== item.id" :src="item.iconPath" alt="">
-                  <img v-show="active === item.id" :src="item.iconSelectPath" alt="">
+                  <img v-show="selectedIndex !== item.id" :src="item.iconPath" alt="">
+                  <img v-show="selectedIndex === item.id" :src="item.iconSelectPath" alt="">
                 </i>
                 <span>{{ item.title }}</span>
             </div>
@@ -18,7 +19,14 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, computed, onMounted } from 'vue'
+import { useStore } from "vuex"
+const store = useStore();
+import { useRoute, useRouter } from 'vue-router'
+import router from "@/router";
+const $route = useRoute()
+const $router = useRouter()
+
 /**
  * 底部tab-bar数据
  */
@@ -35,32 +43,58 @@ const tabBarNavList = reactive([
         title: '攻略',
         iconPath: require('@/assets/img/icon/gonglue.png'),
         iconSelectPath: require('@/assets/img/icon/gonglue-active.png'),
-        hrefs: '/',
+        hrefs: '/guideline',
     },
     {
         id: 3,
         title: '发布',
         iconPath: require('@/assets/img/icon/fabu.png'),
         iconSelectPath: require('@/assets/img/icon/fabu.png'),
-        hrefs: '/',
+        hrefs: '/release',
     },
     {
         id: 4,
         title: '订单',
         iconPath: require('@/assets/img/icon/img2.12aa5813.png'),
         iconSelectPath: require('@/assets/img/icon/img22.98e00f94.png'),
-        hrefs: '/',
+        hrefs: '/order',
     },
     {
         id: 5,
         title: '我的',
         iconPath: require('@/assets/img/icon/img3.8fd2bd15.png'),
         iconSelectPath: require('@/assets/img/icon/img33.3d66679c.png'),
-        hrefs: '/',
+        hrefs: '/mine',
     },
 ])
-const active = ref(1)
-// TODO: 点击切换相应页面并且改变高亮
+
+/**
+ * 页面切换
+ */
+let selectedIndex = ref(1)
+/**
+ * 刷新后的高亮问题的解决
+ */
+const selectedTab = () => {
+    // console.log($route.path)
+    for (let i = 0; i < tabBarNavList.length; i++) {
+        if (tabBarNavList[i].hrefs === $route.path) {
+            return tabBarNavList[i].id
+        }
+    }
+}
+
+onMounted(() => {
+    selectedIndex.value = selectedTab()
+})
+/**
+ * 点击切换页面
+ */
+const switchTab = item => {
+    // console.log(item)
+    selectedIndex.value = item.id
+    $router.push(item.hrefs)
+}
 </script>
 
 <style lang="scss" scoped>

@@ -54,7 +54,7 @@
 </template>
 
 <script setup>
-import {defineProps, onMounted, reactive, ref, watch} from 'vue'
+import { defineProps, onMounted, reactive, ref, watch } from 'vue'
 import { useStore } from "vuex"
 const store = useStore();
 import { useRoute, useRouter } from 'vue-router'
@@ -69,8 +69,9 @@ import getCurrentCityName from "@/util/getUserLocation";
 let locationMsg = ref('定位中...')
 const getCurrentCity = () => {
   getCurrentCityName().then(city => {
-    let result = city.slice(0, city.length - 1);
-    locationMsg.value = result
+    // console.log(city)
+    let result = city.addressComponents.city;
+    locationMsg.value = result.slice(0, result.length - 1)
     // store.commit('changeCity', result)
   })
 }

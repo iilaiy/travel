@@ -7,6 +7,6 @@ const mutations = {
         try {
             localStorage.city = city
         } catch (e) {}
-    }
+    },
 }
 export { mutations }

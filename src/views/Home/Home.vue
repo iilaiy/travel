@@ -3,7 +3,7 @@
         <div class="conta page-margin">
             <!-- 城市选择 -->
             <div class="city-option" @click="$router.push('/city')">
-                <span class="text-one-hidden">{{ $store.state.city }}</span>
+                <span class="text-one-hidden">{{ city }}</span>
                 <i class="iconfont icon-arrow-down"></i>
             </div>
             <!-- 搜索组件 -->
@@ -51,14 +51,17 @@
     import HomeBanner from "@/components/home/HomeBanner"
     import HomeTabBar from "@/components/home/HomeTabBar"
     import TabBar from "@/components/TabBar"
-    import { getCurrentInstance, reactive, ref, onMounted, nextTick } from 'vue'
+    import {getCurrentInstance, reactive, ref, onMounted, nextTick, computed} from 'vue'
     import { useStore } from "vuex"
     import { useRoute, useRouter } from 'vue-router'
     const store = useStore();
     const $axios = getCurrentInstance().appContext.config.globalProperties.$axios;
     const $route = useRoute()
     const $router = useRouter()
+    let {getters} = useStore();
 
+    // 地区(调用getters方法读取属性最新的值)
+    const city = computed(() => getters['doubleCity'])
 
     /**
      * 景点数据

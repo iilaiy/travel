@@ -5,7 +5,7 @@
 const getters = {
     doubleCity (state) {
         return state.city
-    }
+    },
 }
 
 export { getters }
