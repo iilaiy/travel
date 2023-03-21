@@ -16,10 +16,10 @@
                 北京环球影城
             </div>
             <div class="box search-box text-one-hidden">
-                北京环球影城
+                北京环球
             </div>
             <div class="box search-box text-one-hidden">
-                澳门
+                澳门影城
             </div>
         </div>
     </div>
@@ -38,7 +38,7 @@
         display: flex;
         flex-wrap: wrap;
         .box {
-            max-width: 30%;
+            max-width: 45%;
             height: .8rem;
             line-height: .6rem;
             padding: .1rem .3rem;

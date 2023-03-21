@@ -76,7 +76,13 @@
             overflow: hidden;
         }
         .first-box {
-            width: 45%;
+            height: 8.5rem;
+            width: 50%;
+          img {
+            width: 100%;
+            height: 100%;
+            display: block;
+          }
         }
         .box {
             width: 80%;
@@ -129,18 +135,25 @@
                 }
             }
             .b-bot {
+                box-shadow: 2px 2px .3rem #cccccc;
+                padding: .2rem;
                 width: 100%;
                 height: calc(100% - 1rem);
                 background-color: #FFFFFF;
                 border-radius: .3rem;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
                 .b-bot-box {
-                    float: left;
-                    margin: .3rem .3rem 0;
+                    width: 100%;
                     display: flex;
+                    justify-content: space-around;
                     .left {
                         position: relative;
-                        width: 1rem;
-                        height: 1rem;
+                        width: 1.2rem;
+                        height: 1.2rem;
+                        border-radius: .2rem;
+                        overflow: hidden;
                         img {
                             width: 100%;
                             height: 100%;
@@ -156,6 +169,35 @@
                             background-size: cover;
                         }
                     }
+                  .mid {
+                    padding-left: .25rem;
+                    .mid-title {
+                      font-size: .38rem;
+                    }
+                    .mid-label {
+                      span {
+                        max-width: 1.5rem;
+                        display: inline-block;
+                        background-color: #fdf4ed;
+                        padding: .1rem;
+                        margin: .1rem .2rem 0 0;
+                        border-radius: .2rem;
+                        color: #bf865c;
+                      }
+                    }
+                  }
+                  .right {
+                    text-align: right;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-around;
+                    .score {
+
+                    }
+                    .comment {
+                      color: #888888;
+                    }
+                  }
                 }
             }
         }

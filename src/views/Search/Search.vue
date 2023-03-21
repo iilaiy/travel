@@ -62,7 +62,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 .header {
     border-bottom: 1px solid #e5e5e6;
-    height: 1.2rem;
+    height: 1.5rem;
     padding: 0 .8rem 0 .3rem;
     display: flex;
     align-items: center;
