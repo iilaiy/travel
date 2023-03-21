@@ -20,7 +20,6 @@
 </template>
 
 <script>
-// TODO: 滚动右侧随着对应区域字母高亮
 export default {
   name: "Alphabet.vue",
   props: ['cities'],

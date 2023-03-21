@@ -10,7 +10,7 @@
           :placeholder="placeholder"
           :name="name"
           :value="value"
-          @input="$emit('inputHandle', $event.target.value)"
+          @input="$emit('inputHandle', $event.target.value.trim())"
           @keyup.enter="submitInputValue"
       >
 <!--      value & @input 类同于v-model （向父组件传递当前输入的值）-->
@@ -56,7 +56,7 @@ export default {
     /* 按下回车向父组件提交当前的value值 */
     submitInputValue () {
       let val = this.value || this.placeholder
-      this.$emit('submitInputValue', val)
+      this.$emit('submitInputValue', val.trim())
     }
   },
   computed: {

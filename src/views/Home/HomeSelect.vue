@@ -238,6 +238,7 @@
                 display: flex;
                 align-items: center;
                 color: #fd6c67;
+                font-size: .38rem;
                 i, span:nth-child(2) {
                     font-weight: 600;
                 }
@@ -247,6 +248,7 @@
                 }
                 span:last-child {
                     margin-left: .1rem;
+                    font-size: .3rem;
                 }
             }
         }

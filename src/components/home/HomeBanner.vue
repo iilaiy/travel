@@ -30,6 +30,7 @@
     })
 
     onMounted(() => {
+      /* TODO: 用户长按或拖动轮播图时暂时自动滚动松开时恢复自动滚动 */
         new Swiper ('.banner-conta', {
             loop: true,
             autoplay: {

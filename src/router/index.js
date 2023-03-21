@@ -11,7 +11,7 @@ const routes = [
         name: 'Home',
         component: () => import('@/views/Home/Home'),
         meta: {
-            keepAlive: true, //需要被缓存
+            keepAlive: false,
         }
     },
     {

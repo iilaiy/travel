@@ -33,17 +33,22 @@ const props = defineProps({
 
 const activeIndex = ref(0)
 
-  onMounted(() => {
+onMounted(() => {
     var mySwiper = new Swiper ('.b-wen', {
         loop: true,
         autoplay: {
-            delay: 5000,
+            delay: 3000,
+            disableOnInteraction: false,
         },
         direction: 'vertical',
         on: {
           slideChange () {
             /* 获取activeIndex */
-            activeIndex.value = this.activeIndex
+            let index = this.activeIndex
+            if (index > props.hotSearch.length) {
+              index = 1
+            }
+            activeIndex.value = index
             // console.log(activeIndex.value)
           }
         }

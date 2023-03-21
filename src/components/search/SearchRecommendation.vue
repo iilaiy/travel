@@ -21,6 +21,7 @@
             <div class="box search-box text-one-hidden">
                 澳门影城
             </div>
+          <input type="text" />
         </div>
     </div>
 </template>

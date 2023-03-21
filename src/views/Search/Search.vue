@@ -1,6 +1,7 @@
 <template>
     <div class="header">
-        <Back class="back"></Back>
+<!--      返回上一页清空输入框的值-->
+        <Back class="back" @click="inputSearch.value = ''"></Back>
         <div class="search">
             <i class="iconfont icon-icon_suosou"></i>
             <InputGroup
@@ -18,7 +19,8 @@
         <SearchHistory
                 v-if="historySearch.length > 0"
                 :historySearch="historySearch"
-                @emptyHistorySearchHandel="emptyHistorySearch"
+                @emptyHistorySearchHandle="emptyHistorySearch"
+                @historyHandle="submitInputValue"
         ></SearchHistory>
         <SearchRecommendation></SearchRecommendation>
         <HotSearch></HotSearch>
@@ -26,7 +28,7 @@
 </template>
 
 <script setup>
-import {ref, reactive, defineProps, onMounted, watch, onActivated} from "vue";
+import {ref, reactive, defineProps, onMounted, watch, onActivated, onUnmounted} from "vue";
 import {useRoute, useRouter} from "vue-router/dist/vue-router";
 import Back from "@/components/Back";
 import InputGroup from "@/components/InputGroup";
@@ -42,6 +44,15 @@ const inputSearch = ref({
     placeholder: $route.query.keyword || '搜索目的地/景点/关键词',
     value: '',
 })
+/* 由于缓存的原因 inputSearch 无法读取到最新的值 */
+/* 监听路由变化（获取最新的keyword） */
+watch(() => $route.query.keyword,
+    val => {
+      // console.log(val)
+      if (val) {
+        inputSearch.value.placeholder = val
+      }
+    })
 /**
  *  输入框发生变化时该变value 并传递给子组件
  */
@@ -54,17 +65,19 @@ const inputHandle = val => {
 const submitInputValue = val => {
     /* 记录一条搜索历史 */
     /* 先查重 */
-    historySearch.forEach((item, index) => {
+    if (val) {
+      historySearch.forEach((item, index) => {
         if (item.keyword === val) {
-            historySearch.splice(index, 1)
+          historySearch.splice(index, 1)
         }
-    })
-    historySearch.unshift(
-        {
+      })
+      historySearch.unshift(
+          {
             id: historySearch.length + 1,
             keyword: val
-        }
-    )
+          }
+      )
+    }
     /* 将当前搜索历史存到localStorage */
     localStorage.setItem('historySearchList', JSON.stringify(historySearch))
     // console.log(val)
@@ -107,10 +120,12 @@ onMounted(() => {
 /* 实现局部组件刷新 */
 onActivated(() => {
     // 页面每次进入将输入框的值清空
-    inputSearch.value.value = ''
+    // inputSearch.value.value = ''
     // 每次进入页面都自动获取焦点
     inputEl.value.$el.childNodes[2].childNodes[1].focus()
 })
+
+
 </script>
 
 <style lang="scss" scoped>
