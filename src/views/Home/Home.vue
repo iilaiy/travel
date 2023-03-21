@@ -111,24 +111,24 @@
         },
         {
             id: 2,
+            title: '主题',
+            comName: markRaw(HomeTheme)
+        },
+        {
+            id: 3,
             title: '周边',
             comName: markRaw(HomePeripheral)
         },
         {
-            id: 3,
+            id: 4,
             title: '景点',
             comName: markRaw(HomeScenicSpot)
         },
         {
-            id: 4,
+            id: 5,
             title: '美食',
             comName: markRaw(HomeGourmetFood)
-        },
-        {
-            id: 5,
-            title: '主题',
-            comName: markRaw(HomeTheme)
-        },
+        }
     ])
     /* 默认显示精选组件 */
     let currentCom = reactive({
@@ -148,11 +148,11 @@
     const hotSearch = reactive([
       {
         id: 1,
-        content: '广州到三亚飞机票'
+        keyword: '广州到三亚飞机票'
       },
       {
         id: 2,
-        content: '沙面'
+        keyword: '沙面'
       }
     ])
     /**

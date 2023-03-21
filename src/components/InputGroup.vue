@@ -11,7 +11,9 @@
           :name="name"
           :value="value"
           @input="$emit('inputHandle', $event.target.value)"
+          @keyup.enter="submitInputValue"
       >
+<!--      value & @input 类同于v-model （向父组件传递当前输入的值）-->
       <i
           v-if="icon"
           :class="[ 'input-icon', 'iconfont', icon ]"
@@ -50,7 +52,15 @@ export default {
     return {
     }
   },
+  methods: {
+    /* 按下回车向父组件提交当前的value值 */
+    submitInputValue () {
+      let val = this.value || this.placeholder
+      this.$emit('submitInputValue', val)
+    }
+  },
   computed: {
+
   },
   watch: {
   },
@@ -74,6 +84,7 @@ $input-size: .36rem;
           height: 100%;
           line-height: $input-height;
           font-size: $input-size;
+          background-color: transparent;
           color: #000000;
       }
       .input_item::-webkit-input-placeholder {

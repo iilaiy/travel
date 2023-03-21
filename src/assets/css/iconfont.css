@@ -1,8 +1,8 @@
 @font-face {
     font-family: "iconfont"; /* Project id 3952428 */
-    src: url('//at.alicdn.com/t/c/font_3952428_cz4ckcdybv5.woff2?t=1679156635272') format('woff2'),
-    url('//at.alicdn.com/t/c/font_3952428_cz4ckcdybv5.woff?t=1679156635272') format('woff'),
-    url('//at.alicdn.com/t/c/font_3952428_cz4ckcdybv5.ttf?t=1679156635272') format('truetype');
+    src: url('//at.alicdn.com/t/c/font_3952428_xsrff8cnem.woff2?t=1679367992273') format('woff2'),
+    url('//at.alicdn.com/t/c/font_3952428_xsrff8cnem.woff?t=1679367992273') format('woff'),
+    url('//at.alicdn.com/t/c/font_3952428_xsrff8cnem.ttf?t=1679367992273') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,26 @@
     font-style: normal;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-shoucang:before {
+    content: "\e601";
+}
+
+.icon-daqia:before {
+    content: "\e604";
+}
+
+.icon-aixin1:before {
+    content: "\e8c3";
+}
+
+.icon-hot-for-atmosphere:before {
+    content: "\e83d";
+}
+
+.icon-shancu:before {
+    content: "\e630";
 }
 
 .icon-mimayincang1:before {

@@ -123,6 +123,9 @@ $center-option-wh: 1.2rem;
               display: block;
               margin-top: .1rem;
             }
+            img{
+                width: .75rem;
+            }
         }
         .navBox-active {
             color: $active-color;

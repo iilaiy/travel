@@ -10,7 +10,7 @@
                             :key="item.id"
                         >
                             <span>
-                                {{ item.content }}
+                                {{ item.keyword }}
                             </span>
                         </div>
                     </div>
