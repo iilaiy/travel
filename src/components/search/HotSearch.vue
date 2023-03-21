@@ -1,7 +1,7 @@
 <template>
     <div class="hot">
         <div class="title search-title">
-            <h2>{{'重庆'}}热搜</h2>
+            <h2>{{ city.name }}热搜</h2>
         </div>
         <div class="content">
             <div class="first-box border-radius">
@@ -57,6 +57,12 @@
 </template>
 
 <script setup>
+import {computed} from "vue";
+import {useStore} from "vuex";
+
+let {getters} = useStore();
+const city = computed(() => getters['doubleCity'])
+
 
 </script>
 

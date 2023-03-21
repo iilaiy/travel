@@ -2,23 +2,40 @@
     <div class="history">
         <div class="title search-title">
             <h2>历史搜索</h2>
-            <i class="iconfont icon-shancu"></i>
+            <i class="iconfont icon-shancu" @click="emptyHistorySearch"></i>
         </div>
         <div class="content">
-            <div class="box search-box">
-                北京
-            </div>
-            <div class="box search-box text-one-hidden" v-for="i in 2">
-                广州到三亚飞机票
+            <div class="box search-box text-one-hidden" v-for="item in historySearchList" :key="item.id">
+                {{ item.keyword }}
             </div>
         </div>
     </div>
 </template>
 
-<script>
-    export default {
-        name: "SearchHistory"
-    }
+<script setup>
+import { ref, reactive, defineProps, computed, defineEmits } from 'vue'
+const emit = defineEmits(["emptyHistorySearchHandel"])
+const props = defineProps({
+    historySearch: Object
+})
+
+const historySearchList = computed(() => {
+    let arr = []
+    props.historySearch.map((item, index) => {
+        if (index >= 8) {
+            return
+        }
+        arr.push(item)
+    })
+    return arr
+})
+/**
+ * 点击删除按钮情况历史搜索记录
+ */
+const emptyHistorySearch = () => {
+    /* 触发父组件方法（清空搜索记录） */
+    emit('emptyHistorySearchHandel')
+}
 </script>
 
 <style lang="scss" scoped>

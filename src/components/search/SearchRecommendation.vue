@@ -44,16 +44,13 @@
             padding: .1rem .3rem;
         }
         .first-box {
-            line-height: normal;
+            padding: .1rem;
             color: #fe6e6c;
-            display: flex;
-            align-items: center;
-            flex-direction: column;
             i {
               font-size: .35rem;
             }
             span {
-              font-size: .25rem;
+                font-size: .25rem;
             }
         }
     }

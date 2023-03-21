@@ -35,7 +35,11 @@
             <div class="content">
                 <div class="content-margin">
 <!--                    条件渲染组件-->
-                    <component :is="currentCom.comName"></component>
+<!--                    <component :is="currentCom.comName"></component>-->
+<!--                    组件缓存-->
+                    <keep-alive>
+                        <component :is="currentCom.comName"></component>
+                    </keep-alive>
                 </div>
             </div>
         </div>

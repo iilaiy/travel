@@ -1,6 +1,7 @@
 <template>
     <div class="attachment">
         周边
+        <input type="text" />
     </div>
 </template>
 

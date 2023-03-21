@@ -24,7 +24,16 @@ const routes = [
         /* 搜素页 */
         path: '/search',
         name: 'Search',
-        component: () => import('@/views/Search/Search')
+        component: () => import('@/views/Search/Search'),
+        meta: {
+            keepAlive: true,
+        }
+    },
+    {
+        /* 搜素页 */
+        path: '/searchresult',
+        name: 'SearchResult',
+        component: () => import('@/views/Search/SearchResult')
     },
     {
         /* 消息 */
@@ -32,8 +41,8 @@ const routes = [
         name: 'Message',
         component: () => import('@/views/Message/Message'),
         meta: {
-            keepAlive: true, //需要被缓存
-            requireAuth: true,
+            keepAlive: true,
+            requireAuth: true,  // 需要验证登录
         },
     },
     {
