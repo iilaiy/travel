@@ -45,7 +45,7 @@
         }
         .first-box {
             padding: .1rem;
-            color: #fe6e6c;
+            color: #f99c37;
             i {
               font-size: .35rem;
             }
@@ -57,7 +57,7 @@
     .box-active {
         .box:first-child {
             color: #FFFFFF;
-            background-color: #fe6e6c;
+            background-color: #f99c37;
         }
     }
 }

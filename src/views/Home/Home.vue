@@ -78,9 +78,8 @@
      */
     let scenicSpot = reactive([])
 
-    /*$axios.get("/api/travel.json").then(res => {
-        scenicSpot = res.result.value
-        console.log(scenicSpot)
+    /*$axios.get("http://apis.juhe.cn/fapigx/scenic/query", {word: '广州'}).then(res => {
+        console.log(res)
     })*/
 
     const bannerData = reactive([

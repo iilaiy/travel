@@ -31,7 +31,7 @@ const routes = [
     },
     {
         /* 搜素页 */
-        path: '/searchresult',
+        path: '/searchResult',
         name: 'SearchResult',
         component: () => import('@/views/Search/SearchResult')
     },
