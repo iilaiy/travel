@@ -1,6 +1,6 @@
 <template>
     <div class="history">
-        <div class="title">
+        <div class="title search-title">
             <h2>历史搜索</h2>
             <i class="iconfont icon-shancu"></i>
         </div>
@@ -25,13 +25,6 @@
 .history {
     .title {
         margin: .3rem 0 .2rem 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        h2 {
-            font-size: .38rem;
-            font-weight: bold;
-        }
         i {
             font-size: .5rem;
             color: #8f8f8f;

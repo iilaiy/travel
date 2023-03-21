@@ -1,11 +1,11 @@
 <template>
     <div class="search-recommendation">
-        <div class="title">
+        <div class="title search-title">
             <h2>搜索推荐</h2>
         </div>
         <div
                 :class="[ 'content', i === 1 ? 'box-active' : '' ]"
-                v-for="i in 3"
+                v-for="i in 4"
                 :key="i"
         >
             <div class="first-box search-box box">
@@ -33,13 +33,6 @@
 .search-recommendation {
     .title {
         margin: 0 0 .2rem 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        h2 {
-            font-size: .38rem;
-            font-weight: bold;
-        }
     }
     .content {
         display: flex;

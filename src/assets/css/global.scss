@@ -111,7 +111,7 @@ input {
 }
 
 // 阻止默认滑动行为
-* { touch-action: pan-y; }
+//* { touch-action: pan-y; }
 
 /* 输入框 placeholder 字体颜色 */
 input::-webkit-input-placeholder{
@@ -142,4 +142,13 @@ input[type="search"]::-webkit-search-cancel-button {
   border-radius: .4rem;
   font-size: .35rem;
   background-color: #f7f7f7;
+}
+.search-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  h2 {
+    font-size: .38rem;
+    font-weight: bold;
+  }
 }

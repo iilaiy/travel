@@ -1,6 +1,6 @@
 export default {
     init: function (){
-        const AK = "o491iK2pZE9WAdzi6BBujHwkkhF3qyxY";
+        const AK = "U0oCijoGtaDf6xiE1aC7svfPzzIK0KYd";
         const BMap_URL = "https://api.map.baidu.com/api?v=2.0&ak="+ AK +"&s=1&callback=onBMapCallback";
             return new Promise((resolve, reject) => {
 // 如果已加载直接返回

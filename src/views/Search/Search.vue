@@ -16,6 +16,7 @@
     <div class="page-margin search-conta">
         <SearchHistory></SearchHistory>
         <SearchRecommendation></SearchRecommendation>
+        <HotSearch></HotSearch>
     </div>
 </template>
 
@@ -26,6 +27,7 @@ import Back from "@/components/Back";
 import InputGroup from "@/components/InputGroup";
 import SearchHistory from "@/components/search/SearchHistory"
 import SearchRecommendation from "@/components/search/SearchRecommendation"
+import HotSearch from "@/components/search/HotSearch"
 
 const $route = useRoute()
 const $router = useRouter()
@@ -90,6 +92,6 @@ onMounted(() => {
     }
 }
 .search-conta {
-
+    padding-bottom: .8rem;
 }
 </style>

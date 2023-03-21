@@ -199,6 +199,7 @@ header {
     /* 搜索框 */
     .search {
         width: 70%;
+        margin-top: .3rem;
     }
     /* 消息 */
     .message {
