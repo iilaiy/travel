@@ -1,18 +1,20 @@
 <template>
-  <ul class="list">
-    <!-- 点击字母时,触发跳转事件 -->
-    <li class="item">历史热门</li>
-    <li
-        class="item"
-        v-for="item of letters"
-        :key="item"
-        :ref="item"
-        @click="handleLetterClick"
-    >
-      {{item}}
-    </li>
-  </ul>
-
+  <div>
+    <ul class="list">
+      <!-- 点击字母时,触发跳转事件 -->
+      <li class="item">历史热门</li>
+      <li
+          class="item"
+          v-for="item of letters"
+          :key="item"
+          :ref="item"
+          @click="handleLetterClick"
+      >
+        {{item}}
+      </li>
+    </ul>
+    <van-back-top right="5vw" style="background-color: rgba(0, 0, 0, .3)" />
+  </div>
 <!--  @touchstart="handleTouchStart"
   @touchmove="handleTouchMove"
   @touchend="handleTouchEnd"
@@ -41,7 +43,7 @@ export default {
       }
       return letters
     }
-  }
+  },
 }
 </script>
 

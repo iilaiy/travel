@@ -43,6 +43,7 @@
                 </div>
             </div>
         </div>
+      <van-back-top right="5vw" bottom="12vh" style="background-color: rgba(0, 0, 0, .3)" />
     </main>
     <footer>
         <!-- 底部tab-bar -->
@@ -86,18 +87,10 @@
             throw '请求失败'
         })
     }
-
-    // http://apis.juhe.cn/fapigx/scenic/query
-    // word=&num=&page=&province=&city=&key=92cefc1a******abdd47c3
-    /*$axios.get('/api/scenic/query', {
-        word: '留园',
-        num: 10,
-        page: 2,
-        province: '江苏',
-        city: '苏州',
-        key: '92cefc1a7eca807415fe13a2abdd47c3'
-    }).then(res => {
-        console.log(res)
+    // 848ffd639a564aaca5328d4725995304
+    // https://route.showapi.com/268-1?showapi_appid=替换自己的值&showapi_sign=替换自己的值
+    /*$axios.post('/api/268-1&?showapi_appid=1361154&showapi_sign=848ffd639a564aaca5328d4725995304').then(res => {
+        console.log(res.showapi_res_body.pagebean.contentlist)
     }).catch(e => {
         console.log(e)
     })*/

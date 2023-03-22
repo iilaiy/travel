@@ -20,7 +20,7 @@ module.exports = defineConfig({
   devServer: {
     proxy: {
       '/api': {
-        target: `http://apis.juhe.cn/fapigx`,
+        target: `https://route.showapi.com`,
         changeOrigin: true,
         pathRewrite: {
           ['^' + '/api'] : ''

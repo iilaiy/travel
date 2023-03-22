@@ -47,20 +47,13 @@ const tabBarNavList = reactive([
     },
     {
         id: 3,
-        title: '发布',
-        iconPath: require('@/assets/img/icon/fabu.png'),
-        iconSelectPath: require('@/assets/img/icon/fabu.png'),
-        hrefs: '/release',
-    },
-    {
-        id: 4,
         title: '订单',
         iconPath: require('@/assets/img/icon/img2.12aa5813.png'),
         iconSelectPath: require('@/assets/img/icon/img22.98e00f94.png'),
         hrefs: '/order',
     },
     {
-        id: 5,
+        id: 4,
         title: '我的',
         iconPath: require('@/assets/img/icon/img3.8fd2bd15.png'),
         iconSelectPath: require('@/assets/img/icon/img33.3d66679c.png'),
@@ -114,14 +107,15 @@ $center-option-wh: 1.2rem;
     .bottomNav {
         height: 100%;
         padding-top: .1rem;
+        display: flex;
+        align-items: center;
         .navBox {
-            width: calc(100% / 5);
-            display: inline-block;
+            width: 25%;
             text-align: center;
             color: #696a6c;
             span {
+              line-height: .5rem;
               display: block;
-              margin-top: .1rem;
             }
             img{
                 width: .75rem;
@@ -129,23 +123,6 @@ $center-option-wh: 1.2rem;
         }
         .navBox-active {
             color: $active-color;
-        }
-        .navBox:nth-child(3) {
-            i {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              height: $center-option-wh;
-              width: $center-option-wh;
-              border: .1rem solid $background-primary;
-              margin: -$center-option-wh auto 0 auto;
-              background-color: $active-color;
-              border-radius: 50%;
-              img {
-                width: 80%;
-                display: block;
-              }
-            }
         }
     }
 }

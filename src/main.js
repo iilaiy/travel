@@ -6,6 +6,7 @@ import router from './router'
 import store from './store'
 
 import '@/assets/css/global.scss'
+// import 'vant/lib/index.css';
 
 // 移动端适配
 import 'lib-flexible'
@@ -20,6 +21,5 @@ app.config.globalProperties.$axios = axios  //配置axios的全局引用
 
 app.use(router)
 app.use(store)
-
 
 app.mount('#app')

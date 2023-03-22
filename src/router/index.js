@@ -1,4 +1,5 @@
 import {createRouter, createWebHistory} from "vue-router";
+import { showConfirmDialog } from 'vant';
 
 const routes = [
     {
@@ -58,12 +59,6 @@ const routes = [
         component: () => import('@/views/Guideline/Guideline')
     },
     {
-        /* 发布 */
-        path: '/release',
-        name: 'Release',
-        component: () => import('@/views/Release/Release')
-    },
-    {
         /* 订单 */
         path: '/order',
         name: 'Order',
@@ -103,8 +98,7 @@ router.beforeEach((to, from, next) => {
             if (Boolean(localStorage.getItem("token"))) { // 通过浏览器本地缓存判断当前的token是否存在
                 next();
             } else {
-                console.log(to.fullPath)
-                // TODO: 先弹出一个提示框，待用户选择是否需要跳转登录页进行登录，否则返回原本的页面
+                // console.log(to.fullPath)
                 next({
                     path: '/login',
                     query: { redirect: to.fullPath } // 将跳转的路由path作为参数，登录成功后跳转到该路由
