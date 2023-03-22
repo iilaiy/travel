@@ -93,7 +93,7 @@
         justify-content: space-between;
         padding-bottom: .5rem;
         .left, .right {
-            width: calc(50% - .15rem);
+            width: 48.75%;
             a {
                 color: #000000;
             }
@@ -122,7 +122,7 @@
         }
         .travel-box {
             padding: 5%;
-            box-shadow: 2px 2px .3rem #e7eaed;
+            box-shadow: 0 2px .2rem 0 rgba(0,0,0,.05);
             .b-bottom {
                 margin-top: .2rem;
                 display: flex;
@@ -155,7 +155,7 @@
         }
         .box {
             border-radius: .3rem;
-            margin-top: .3rem;
+            margin-top: 5%;
             background-color: $background-primary;
         }
         .imgBox {

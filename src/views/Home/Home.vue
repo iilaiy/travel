@@ -72,7 +72,7 @@
 
     // 地区(调用getters方法读取属性最新的值)
     const city = computed(() => getters['doubleCity'])
-    const scenicSpot = computed(() => getters['getScenicSpotList'])
+    // const scenicSpot = computed(() => getters['getScenicSpotList'])
     /**
      * 景点数据
      */
@@ -86,6 +86,22 @@
             throw '请求失败'
         })
     }
+
+    // http://apis.juhe.cn/fapigx/scenic/query
+    // word=&num=&page=&province=&city=&key=92cefc1a******abdd47c3
+    /*$axios.get('/api/scenic/query', {
+        word: '留园',
+        num: 10,
+        page: 2,
+        province: '江苏',
+        city: '苏州',
+        key: '92cefc1a7eca807415fe13a2abdd47c3'
+    }).then(res => {
+        console.log(res)
+    }).catch(e => {
+        console.log(e)
+    })*/
+
     onMounted(() => {
         getTravel()
     })
@@ -182,7 +198,7 @@
 
 header {
     width: 100%;
-    position: sticky;
+    position: fixed;
     top: 0;
     background: url("@/assets/img/comm/bg.png") no-repeat;
     background-size: 100%;
@@ -231,6 +247,7 @@ header {
     }
 }
 main {
+    margin-top: $nav-height;
     background: url("@/assets/img/comm/bg.png") no-repeat;
     background-position: 0 -1.6rem;
     background-size: 100%;
@@ -246,7 +263,7 @@ main {
         .content {
             background-color: #f8f8f8;
             .content-margin {
-                width: 94%;
+                width: 95%;
                 margin: 0 auto;
             }
         }
