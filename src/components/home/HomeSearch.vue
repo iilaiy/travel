@@ -3,7 +3,7 @@
             <div class="search-box" @click="toSearch">
                 <i class="iconfont icon-icon_suosou"></i>
                 <div class="swiper-container b-wen _swiper">
-                    <div class="swiper-wrapper wen-box">
+                    <div class="swiper-wrapper swiper-no-swiping wen-box">
                         <div
                             class="swiper-slide"
                             v-for="item in hotSearch"

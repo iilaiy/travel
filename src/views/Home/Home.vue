@@ -72,16 +72,23 @@
 
     // 地区(调用getters方法读取属性最新的值)
     const city = computed(() => getters['doubleCity'])
-
+    const scenicSpot = computed(() => getters['getScenicSpotList'])
     /**
      * 景点数据
      */
-    let scenicSpot = reactive([])
 
-    /*$axios.get("http://apis.juhe.cn/fapigx/scenic/query", {word: '广州'}).then(res => {
-        console.log(res)
-    })*/
-
+    /* TODO: 后期有后台接口改为按照地区请求对应城市数据 */
+    /* 请求精选数据并存储到store */
+    const getTravel = () => {
+        $axios.get("/api/travel.json").then(res => {
+            store.commit('changeScenicSpotList', res.data.eList)
+        }).catch(e =>{
+            throw '请求失败'
+        })
+    }
+    onMounted(() => {
+        getTravel()
+    })
     const bannerData = reactive([
         {
             imgUrl: require('@/assets/img/banner/05b2ad85ae45525c.jpg')
@@ -158,6 +165,7 @@
         keyword: '沙面'
       }
     ])
+
     /**
      * https://www.zcool.com.cn/work/ZNDQ4MTY2MjA=.html
      *

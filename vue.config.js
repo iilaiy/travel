@@ -15,5 +15,5 @@ module.exports = defineConfig({
     externals: {
       'BMap': 'BMap' // 百度地图配置
     }
-  },
+  }
 })

@@ -20,6 +20,7 @@ try {
 
 const state = {
     city: defaultCity,
-    positionCity: ''
+    positionCity: '',
+    scenicSpotList: []
 }
 export { state }

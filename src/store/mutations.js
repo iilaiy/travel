@@ -12,6 +12,9 @@ const mutations = {
     },
     changePositionCity(state, city) {
         state.positionCity = city
+    },
+    changeScenicSpotList(state, scenic) {
+        state.scenicSpotList = scenic
     }
 }
 export { mutations }
