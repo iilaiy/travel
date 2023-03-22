@@ -1,7 +1,7 @@
 <template>
     <div class="theme-conta">
         <!-- 左右 -->
-        <div class="left-theme theme-common" v-for="(item,index) in dataList" :key="index">
+        <div class="theme theme-common" v-for="(item,index) in dataList" :key="index">
             <div class="theme-box" v-for="val in item" :key="val.objectId">
                 <div class="img-box" :style="{
                     background: `url('${val.image}') no-repeat`,
@@ -9,7 +9,7 @@
                     'background-position': '50%'
                 }">
                     <div class="min-box">
-                        <span>门票 · 今日订</span>
+                        <span>{{ val.categoryName }}</span>
                     </div>
                 </div>
                 <div class="theme-content">
@@ -36,8 +36,8 @@
     const $axios = getCurrentInstance().appContext.config.globalProperties.$axios;
 
     const dataList = reactive({
+        oddArr: [],
         evenArr: [],
-        oddArr: []
     })
 
     const getTheme = () => {
@@ -119,7 +119,7 @@
             }
         }
         .price {
-            width: 70%;
+            width: 50%;
             color: #ff5a68;
             span {
                 font-size: .45rem;

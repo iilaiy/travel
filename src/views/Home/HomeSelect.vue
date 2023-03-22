@@ -3,7 +3,7 @@
         <!-- TODO: 按模块分成每个组件 -->
         <div class="conta">
             <!-- 左右两边排列 -->
-            <div :class="[l === 1 ? 'left' : 'right']" v-for="l in 2">
+            <div class="select" v-for="l in 2" :key="l">
                 <!-- 景点 -->
                 <template v-for="item in l === 1 ? leftList : rightList">
                     <a href="">
@@ -27,11 +27,8 @@
                                         <span class="text-one-hidden">{{ item.price }}</span>
                                         <span>起</span>
                                     </div>
-                                    <div class="distance" v-if="item.categoryName === '景区门票'">
+                                    <div class="distance" v-if="item.commentScore">
                                         <span>{{ item.commentScore }}</span>分
-                                    </div>
-                                    <div class="distance" v-else>
-                                        <span>{{ item.commentGood }}</span> 好评
                                     </div>
                                 </div>
                             </div>
@@ -92,7 +89,7 @@
         display: flex;
         justify-content: space-between;
         padding-bottom: .5rem;
-        .left, .right {
+        .select {
             width: 48.75%;
             a {
                 color: #000000;
@@ -103,15 +100,17 @@
             margin: 0 auto;
             img {
                 width: 100%;
+                min-height: 3.5rem;
                 display: block;
             }
+        }
+        .b-bot {
+            padding: 0 5% 5%;
         }
         .b-title {
             width: 100%;
         }
         .b-center {
-            display: flex;
-            justify-content: space-between;
             .position {
                 color: #b2acaa;
                 font-size: .35rem;
@@ -121,27 +120,26 @@
             }
         }
         .travel-box {
-            padding: 5%;
             box-shadow: 0 2px .2rem 0 rgba(0,0,0,.05);
             .b-bottom {
                 margin-top: .2rem;
                 display: flex;
                 justify-content: space-between;
+                align-items: center;
                 .price {
                     display: flex;
                     align-items: center;
                     color: #fd6c67;
-                    font-size: .38rem;
                     i, span:nth-child(2) {
                         font-weight: 600;
                     }
                     span:nth-child(2) {
                         display: block;
                         max-width: 1rem;
+                        font-size: .48rem;
                     }
                     span:last-child {
                         margin-left: .1rem;
-                        font-size: .3rem;
                     }
                 }
                 .distance {
@@ -162,7 +160,7 @@
             overflow: hidden;
         }
         .b-title {
-            font-size: .35rem;
+            font-size: .38rem;
             font-weight: bold;
             margin: .3rem 0;
         }
