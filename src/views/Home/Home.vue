@@ -82,6 +82,7 @@
     /* 请求精选数据并存储到store */
     const getTravel = () => {
         $axios.get("/api/travel.json").then(res => {
+            console.log(res.data.eList)
             store.commit('changeScenicSpotList', res.data.eList)
         }).catch(e =>{
             throw '请求失败'
@@ -89,7 +90,7 @@
     }
     // 848ffd639a564aaca5328d4725995304
     // https://route.showapi.com/268-1?showapi_appid=替换自己的值&showapi_sign=替换自己的值
-    /*$axios.post('/api/268-1&?showapi_appid=1361154&showapi_sign=848ffd639a564aaca5328d4725995304').then(res => {
+    /*$axios.post('/api/268-1&?showapi_appid=1361154&showapi_sign=848ffd639a564aaca5328d4725995304&keyword=广州').then(res => {
         console.log(res.showapi_res_body.pagebean.contentlist)
     }).catch(e => {
         console.log(e)
@@ -167,11 +168,11 @@
     const hotSearch = reactive([
       {
         id: 1,
-        keyword: '广州到三亚飞机票'
+        keyword: '广州'
       },
       {
         id: 2,
-        keyword: '沙面'
+        keyword: '广州长隆飞鸟乐园'
       }
     ])
 

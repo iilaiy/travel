@@ -82,7 +82,7 @@ const city = computed(() => getters['doubleCity'])
             overflow: hidden;
         }
         .first-box {
-            height: 8.5rem;
+            height: 8rem;
             width: 50%;
           img {
             width: 100%;
@@ -156,8 +156,8 @@ const city = computed(() => getters['doubleCity'])
                     justify-content: space-around;
                     .left {
                         position: relative;
-                        width: 1.2rem;
-                        height: 1.2rem;
+                        width: 1.1rem;
+                        height: 1.1rem;
                         border-radius: .2rem;
                         overflow: hidden;
                         img {

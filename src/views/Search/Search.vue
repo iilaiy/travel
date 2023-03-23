@@ -143,7 +143,6 @@ onActivated(() => {
         display: flex;
         align-items: center;
         background-color: #f7f7f7;
-        border: 1px solid #e5e5e6;
         border-radius: .4rem;
         i {
             width: .35rem;
