@@ -72,7 +72,7 @@
                     resultList.data.push(item)
                 }
             })
-            console.log(resultList.data)
+            // console.log(resultList.data)
         } catch (e) {
             throw '出错啦~'
         }

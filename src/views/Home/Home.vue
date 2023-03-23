@@ -82,7 +82,7 @@
     /* 请求精选数据并存储到store */
     const getTravel = () => {
         $axios.get("/api/travel.json").then(res => {
-            console.log(res.data.eList)
+            // console.log(res.data.eList)
             store.commit('changeScenicSpotList', res.data.eList)
         }).catch(e =>{
             throw '请求失败'
