@@ -62,7 +62,10 @@ const routes = [
         /* 订单 */
         path: '/order',
         name: 'Order',
-        component: () => import('@/views/Order/Order')
+        component: () => import('@/views/Order/Order'),
+        meta: {
+            requireAuth: true,  // 需要验证登录
+        },
     },
     {
         /* 我的 */

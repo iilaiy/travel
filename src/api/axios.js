@@ -97,7 +97,7 @@ axios.interceptors.response.use(
  * @param {Object} params [请求时携带的参数]
  */
 export function get(url, params = {}) {
-    // 如果需要在请求的参数中传token，使用下边这段代码
+    // 需要在请求的参数中传token
     // let token = localStorage.getItem('token') || '';
     // if (params.__proto__.constructor.name == "Object") {
     // 	token && (params.token = token);
@@ -141,7 +141,7 @@ export function get(url, params = {}) {
  * @param {Object} params [请求时携带的参数]
  */
 export function post(url, params = {}) {
-    // 如果需要在请求的参数中传token，使用下边这段代码
+    // 在请求的参数中传token
     // let token = localStorage.getItem('token') || '';
     // if (params.__proto__.constructor.name == "Object") {
     // 	token && (params.token = token);
